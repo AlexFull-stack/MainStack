@@ -15,15 +15,12 @@ class CreateHouseRulesTable extends Migration
     {
         Schema::create('house_rules', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('rule_id');
-            $table->bigInteger('hotel_id')->unsigned()->index();
-            $table->string('value');
+            $table->string('name');
+            $table->text('value')->nullable();
+            $table->string('icon')->nullable();
             $table->timestamps();
         });
 
-        Schema::table('house_rules', function ($table) {
-            $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
-        });
     }
 
     /**
